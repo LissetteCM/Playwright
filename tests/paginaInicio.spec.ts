@@ -7,6 +7,24 @@ await page.getByTestId("email").fill("customer@practicesoftwaretesting.com"); //
 await page.getByTestId("password").fill("welcome01"); //Add pass
 await page.getByTestId("login-submit").click();//click btn iniciar sesion
 await page.getByTestId("nav-home").click();
-await page.getByTestId("sort").selectOption({ label: "Name (A to Z)" });//Para click en btn de ordenar asd y desc
 
+
+//Validar que si se haya ordenado correctamente
+const elements =  page.getByTestId("product-name");
+await expect(elements.first()).not.toHaveText('');
+const productNames = await elements.first().innerText();
+console.log(productNames);
+
+await page.getByTestId("sort").selectOption({ label :'Name (A - Z)' });//Para click en btn de ordenar asd y desc
+
+const items = page.getByTestId("product-name");
+await expect(items.first()).not.toHaveText(productNames);
+const ProductNames = await items.allTextContents();
+console.log(ProductNames);
+
+const getTexts = (await items.allTextContents()).map((text) => text.trim());
+
+const expectedTexts = [...getTexts].sort((a, b) => a.localeCompare(b));
+
+expect(getTexts).toEqual(expectedTexts);
 });
