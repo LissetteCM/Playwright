@@ -8,7 +8,7 @@ test("Carrito de Compras con múltiples productos", async ({ page }) => {
   await page.getByTestId("login-submit").click();
   await page.getByTestId("nav-home").click();
 
-  const productos = ["Claw Hammer with Shock Reduction Grip", "Screwdriver", "Drill"];
+  const productos = ["Pliers", "Screwdriver", "Drill"];
   let itemsPrevios = 0;
 
   for (const producto of productos) {
