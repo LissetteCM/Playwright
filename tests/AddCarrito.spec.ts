@@ -30,7 +30,7 @@ test("Carrito de Compras con múltiples productos", async ({ page }) => {
       const itemsEnCarrito = await page.locator('[data-test="cart-item"]').count();
       //expect(itemsEnCarrito).toBeGreaterThan(itemsPrevios);
       //itemsPrevios = itemsEnCarrito;
-await page.screenshot({path: 'screenshots/Carrito/Carrito1.png', fullPage: true});//captura de pantalla
+//await page.screenshot({path: 'screenshots/Carrito/Carrito1.png', fullPage: true});//captura de pantalla
 
       // Volver al home
       await page.getByTestId("nav-home").click();
@@ -38,11 +38,34 @@ await page.screenshot({path: 'screenshots/Carrito/Carrito1.png', fullPage: true}
       console.warn(`No se encontraron tarjetas para: ${producto}`);
     }
   }
-await page.screenshot({path: 'screenshots/Carrito/Carrito.png', fullPage: true});//captura de pantalla
+//await page.screenshot({path: 'screenshots/Carrito/Carrito.png', fullPage: true});//captura de pantalla
 
-  // Validar que el carrito tenga más de un producto
+
  await page.getByTestId("nav-cart").click();
-  //const itemsFinales = await page.locator('[data-test="cart-item"]').count();
-  //expect(itemsFinales).toBeGreaterThan(1);
 await page.getByTestId("proceed-1").click();
+
+// Sign in
+ await page.getByTestId("email").fill("customer@practicesoftwaretesting.com");
+  await page.getByTestId("password").fill("welcome01");
+  await page.getByTestId("login-submit").click();
+ // await page.waitForTimeout(1000);
+  await page.getByTestId("proceed-2").click();
+  // Biññimg Address
+  await page.getByTestId("country").selectOption({ label :'American Samoa' });
+   await page.getByTestId("postal_code").fill("30510");
+   await page.getByTestId("house_number").fill("8836-0616");
+   await page.getByTestId("street").fill("Jessica Dam");
+   await page.getByTestId("city").fill("Feeneyberg");
+   await page.getByTestId("state").fill("Colorado");
+    await page.getByTestId("proceed-3").click();
+ // await page.waitForTimeout(1000);
+
+  // Payment
+   await page.getByTestId("payment-method").selectOption({ label :'Credit Card' });
+  await page.getByTestId("credit_card_number").fill("4111-1111-1111-1111");
+  await page.getByTestId("expiration_date").fill("12/2030");
+  await page.getByTestId("cvv").fill("123");
+  await page.getByTestId("card_holder_name").fill("Lissette Contreras");
+  await page.getByTestId("finish").click();
+  //await page.waitForTimeout(1000);
 });
