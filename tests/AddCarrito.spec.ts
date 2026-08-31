@@ -30,6 +30,7 @@ test("Carrito de Compras con múltiples productos", async ({ page }) => {
       const itemsEnCarrito = await page.locator('[data-test="cart-item"]').count();
       //expect(itemsEnCarrito).toBeGreaterThan(itemsPrevios);
       //itemsPrevios = itemsEnCarrito;
+await page.screenshot({path: 'screenshots/Carrito/Carrito1.png', fullPage: true});//captura de pantalla
 
       // Volver al home
       await page.getByTestId("nav-home").click();
@@ -37,11 +38,11 @@ test("Carrito de Compras con múltiples productos", async ({ page }) => {
       console.warn(`No se encontraron tarjetas para: ${producto}`);
     }
   }
+await page.screenshot({path: 'screenshots/Carrito/Carrito.png', fullPage: true});//captura de pantalla
 
   // Validar que el carrito tenga más de un producto
  await page.getByTestId("nav-cart").click();
   //const itemsFinales = await page.locator('[data-test="cart-item"]').count();
   //expect(itemsFinales).toBeGreaterThan(1);
-
 await page.getByTestId("proceed-1").click();
 });
