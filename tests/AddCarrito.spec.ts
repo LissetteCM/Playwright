@@ -67,5 +67,5 @@ await page.getByTestId("proceed-1").click();
   await page.getByTestId("cvv").fill("123");
   await page.getByTestId("card_holder_name").fill("Lissette Contreras");
   await page.getByTestId("finish").click();
-  //await page.waitForTimeout(1000);
+ await page.screenshot({path: 'screenshots/Carrito/Compra_Finalizada.png', fullPage: true});//captura de pantalla
 });
