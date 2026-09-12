@@ -40,8 +40,8 @@ test("Carrito de Compras con múltiples productos", async ({ page }) => {
   }
 //await page.screenshot({path: 'screenshots/Carrito/Carrito.png', fullPage: true});//captura de pantalla
 
-
- await page.getByTestId("nav-cart").click();
+await page.waitForSelector('[data-test="nav-cart"]', { timeout: 60000 });
+await page.getByTestId("nav-cart").click();
 await page.getByTestId("proceed-1").click();
 
 // Sign in
@@ -67,5 +67,20 @@ await page.getByTestId("proceed-1").click();
   await page.getByTestId("cvv").fill("123");
   await page.getByTestId("card_holder_name").fill("Lissette Contreras");
   await page.getByTestId("finish").click();
- await page.screenshot({path: 'screenshots/Carrito/Compra_Finalizada.png', fullPage: true});//captura de pantalla
+  await page.waitForTimeout(3000);
+   await page.pdf({
+        path: 'screenshots/Carrito/Compra_Finalizada2.pdf',
+        format: 'A4',
+        printBackground: true, // Incluye fondos y colores CSS
+        landscape: true, // <-- Configura la orientación a Horizontal (Landscape)
+        margin: {
+            top: '20mm',
+            bottom: '20mm',
+            left: '15mm',
+            right: '15mm',
+        },
+        displayHeaderFooter: true,
+        headerTemplate: '<span style="font-size:10px; margin-left: 20px;">Documento generado con - Playwright - Testing con Pablo Herrera</span>',
+        footerTemplate: '<span style="font-size:10px; margin-left: 20px;">Página <span class="pageNumber"></span> de <span class="totalPages"></span></span>',
+    });
 });
