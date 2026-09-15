@@ -28,8 +28,7 @@ test("Carrito de Compras con múltiples productos", async ({ page }) => {
       // Ir al carrito y validar incremento
       await page.getByTestId("nav-cart").click();
       const itemsEnCarrito = await page.locator('[data-test="cart-item"]').count();
-      //expect(itemsEnCarrito).toBeGreaterThan(itemsPrevios);
-      //itemsPrevios = itemsEnCarrito;
+      
 //await page.screenshot({path: 'screenshots/Carrito/Carrito1.png', fullPage: true});//captura de pantalla
 
       // Volver al home
@@ -72,7 +71,7 @@ await page.getByTestId("proceed-1").click();
         path: 'screenshots/Carrito/Compra_Finalizada2.pdf',
         format: 'A4',
         printBackground: true, // Incluye fondos y colores CSS
-        landscape: true, // <-- Configura la orientación a Horizontal (Landscape)
+        landscape: true, // <-- Configura la orientación a Horizontal 
         margin: {
             top: '20mm',
             bottom: '20mm',
